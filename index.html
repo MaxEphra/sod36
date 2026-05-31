@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Roteiro SOD 36 | Atendimentos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0f1a;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            color: #f0f3f8;
+            padding-top: 100px;
+        }
+
+        /* HEADER FIXO */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #0f1622;
+            border-bottom: 1px solid #2a3346;
+            padding: 0.9rem 1.5rem;
+            z-index: 1000;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .sod-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #FFD966, #FFB347);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .sod-title:hover {
+            opacity: 0.85;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-header {
+            background: #1e2a3a;
+            border: 1px solid #3a4a5e;
+            color: #FFD966;
+            padding: 0.5rem 1.3rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-header:hover {
+            background: #2a3a4e;
+            border-color: #FFD966;
+            transform: translateY(-1px);
+        }
+
+        /* BARRA DE BUSCA ABAIXO DO HEADER */
+        .search-section {
+            max-width: 1100px;
+            margin: 0 auto 1.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            background: #121a26;
+            border: 1px solid #2e3b4e;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            color: white;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: #FFD966;
+            box-shadow: 0 0 0 2px rgba(255, 217, 102, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: #6a7c94;
+        }
+
+        /* CONTAINER DOS CARDS */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem 2rem;
+        }
+
+        /* CARDS COM BORDA TOTAL DOURADA */
+        .card {
+            background: #121a26;
+            border-radius: 24px;
+            margin-bottom: 1.6rem;
+            padding: 1.5rem 1.8rem;
+            transition: all 0.2s ease;
+            border: 5px solid #FFD966; /* borda completa em todos os lados */
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            background: #16202f;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .empresa {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* código cliente no card */
+        .codigo-cliente {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: #0e1622;
+            padding: 8px 14px;
+            border-radius: 16px;
+            margin: 0.5rem 0 0.8rem 0;
+            width: fit-content;
+        }
+
+        .codigo-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #b9cef0;
+        }
+
+        .codigo-valor {
+            font-family: monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #FFD966;
+            background: #0000002e;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .btn-copy-code {
+            background: #1f2c3c;
+            border: none;
+            color: #FFD966;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-copy-code:hover {
+            background: #2f4055;
+        }
+
+        /* endereço */
+        .endereco {
+            background: #0e1622;
+            border-radius: 18px;
+            padding: 0.9rem 1.2rem;
+            margin: 0.8rem 0 1rem 0;
+            border: 1px solid #293445;
+        }
+
+        .endereco-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .endereco-header strong {
+            font-size: 0.8rem;
+            color: #9bb3d0;
+            background: #1a2535;
+            padding: 3px 12px;
+            border-radius: 40px;
+        }
+
+        .address-value {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: #e2e9f2;
+            word-break: break-word;
+            padding-left: 10px;
+            border-left: 2px solid #ffd96655;
+        }
+
+        .endereco-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-copy-address, .btn-waze {
+            background: #1e2a38;
+            border: 1px solid #35495e;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #f0f3f8;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-waze {
+            background: #2a3a48;
+        }
+
+        .btn-copy-address:hover, .btn-waze:hover {
+            background: #2c3e50;
+            border-color: #FFD966;
+            color: #FFD966;
+        }
+
+        /* horário amarelo */
+        .horario {
+            display: inline-flex;
+            align-items: center;
+            background: #FFD96620;
+            color: #FFD966;
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0.8rem 0 1rem 0;
+            border: 1px solid #FFD96640;
+        }
+
+        .btn-whatsapp {
+            background: #1f8a5c;
+            color: white;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .btn-whatsapp:hover {
+            background: #0f6e4a;
+        }
+
+        /* MODAIS */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #0f1722;
+            border-radius: 32px;
+            max-width: 500px;
+            width: 90%;
+            padding: 1.8rem;
+            border: 1px solid #FFD96666;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #2a3a4a;
+            padding-bottom: 0.8rem;
+        }
+
+        .modal-header h3 {
+            color: #FFD966;
+            font-size: 1.4rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-select {
+            width: 100%;
+            background: #0f1622;
+            border: 1px solid #2e3b4e;
+            color: #FFD966;
+            padding: 10px 12px;
+            border-radius: 30px;
+            font-weight: 500;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .modal-search {
+            width: 100%;
+            background: #0f1622;
+            border: 1px solid #2e3b4e;
+            padding: 10px 12px;
+            border-radius: 40px;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .codigo-exibido {
+            background: #1e2a38;
+            border-radius: 20px;
+            padding: 12px;
+            text-align: center;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #FFD966;
+            word-break: break-all;
+        }
+
+        .btn-copy-modal {
+            background: #2c7da0;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .btn-copy-modal:hover {
+            background: #1f5e7a;
+        }
+
+        .insumos-list {
+            list-style: none;
+        }
+        .insumos-list li {
+            background: #1a2538;
+            margin: 0.7rem 0;
+            padding: 12px 16px;
+            border-radius: 60px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* toast */
+        .toast-notify {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #1f2f3c;
+            color: #FFD966;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            z-index: 2100;
+            opacity: 0;
+            transition: 0.2s;
+            pointer-events: none;
+            backdrop-filter: blur(8px);
+        }
+        .toast-notify.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Responsividade */
+        @media (max-width: 650px) {
+            .fixed-header {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+                padding: 0.8rem;
+            }
+            .header-buttons {
+                justify-content: center;
+            }
+            body {
+                padding-top: 130px;
+            }
+            .sod-title {
+                text-align: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .empresa {
+                font-size: 1.2rem;
+            }
+            .card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER FIXO -->
+<div class="fixed-header">
+    <div class="header-buttons">
+        <button class="btn-header" id="homeButton">SOD 36</button>
+        <button class="btn-header" id="openInsumosBtn">INSUMOS</button>
+        <button class="btn-header" id="openClienteModalBtn">CÓD. CLIENTE</button>
+    </div>
+</div>
+
+<!-- BARRA DE BUSCA -->
+<div class="search-section">
+    <input type="text" id="globalSearch" class="search-input" placeholder="Buscar cliente ou código...">
+</div>
+
+<div class="container" id="cardsContainer"></div>
+
+<!-- MODAL INSUMOS -->
+<div id="insumosModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Insumos Operacionais</h3>
+            <button class="close-modal" data-modal="insumosModal">&times;</button>
+        </div>
+        <ul class="insumos-list">
+            <li>SOD 36</li><li>SOD 38</li><li>SOD 40</li><li>SOD 41</li><li>SOD 42</li><li>SOD 29B</li><li>SOD 52</li>
+        </ul>
+    </div>
+</div>
+
+<!-- MODAL CÓD. CLIENTE -->
+<div id="clienteModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Código do Cliente</h3>
+            <button class="close-modal" data-modal="clienteModal">&times;</button>
+        </div>
+        <input type="text" id="modalClienteSearch" class="modal-search" placeholder="Filtrar cliente...">
+        <select id="modalClienteSelect" class="modal-select" size="8"></select>
+        <div class="codigo-exibido" id="selectedCodeDisplay">-- selecione --</div>
+        <button id="copyModalCodeBtn" class="btn-copy-modal">Copiar código do cliente</button>
+    </div>
+</div>
+
+<div id="toastMsg" class="toast-notify">Copiado!</div>
+
+<script>
+    // ==================== BASE DE DADOS ATUALIZADA COM ENDEREÇOS CORRETOS ====================
+    const clientesData = [
+        { nome: "DBS SÃO MATEUS", codigo: "CLI-1001", endereco: "Av. Cláudio Augusto Fernandes, 826 - São Mateus, São Paulo - SP, 03962-120", horario: "13:20 - 13:30", whatsapp: "5511916407147" },
+        { nome: "SEMEWORK", codigo: "CLI-1002", endereco: "RUA ANDRÉ DE ALMEIDA, 2098, SÃO MATEUS, SÃO PAULO-SP, 03950-000", horario: "13:35 - 13:45", whatsapp: "5511949027884" },
+        { nome: "SOLER", codigo: "CLI-1003", endereco: "Av. Satélite, 84 - Cidade Satelite Santa Barbara, São Paulo - SP, 08330-480", horario: "13:50 - 14:00", whatsapp: "5511942437177" },
+        { nome: "AMOR SAÚDE", codigo: "CLI-1004", endereco: "R. Diogo de Moraes Lara, 910 - Jardim Rodolfo Pirani, São Paulo - SP, 08310-200", horario: "14:05 - 14:15", whatsapp: "5511940115548" },
+        { nome: "ISA LAB", codigo: "CLI-1005", endereco: "R. Santa Cecília, 269 - Matriz, Mauá - SP, 09370-110", horario: "14:25 - 14:35", whatsapp: "5511949374041" },
+        { nome: "MB TOXICOLÓGICO", codigo: "CLI-1006", endereco: "av. brigadeiro faria lima 2381, Centro, São Bernardo do Campo - SP, 09720-010", horario: "14:45 - 14:55", whatsapp: "5511954673942" },
+        { nome: "ISA MARMARA", codigo: "CLI-1007", endereco: "R. Mármará, 239 - Jardim do Mar, São Bernardo do Campo - SP, 09750-720", horario: "15:00 - 15:10", whatsapp: "5511949933556" },
+        { nome: "REDE D'OR ASSUNÇÃO", codigo: "CLI-1008", endereco: "Av. João Firmino, 250 - Assunção, São Bernardo do Campo - SP, 09810-250", horario: "15:20 - 15:30", whatsapp: "5511999999999" },
+        { nome: "LUMIERE", codigo: "CLI-1009", endereco: "Av. Cap. Casa, 590 - Demarchi, São Bernardo do Campo - SP, 09811-251", horario: "15:40 - 15:50", whatsapp: "5511987902733" },
+        { nome: "EDNA", codigo: "CLI-1010", endereco: "R. Tranquila, 38 - Suissa, Ribeirão Pires - SP, 09421-190", horario: "16:00 - 16:10", whatsapp: "5511971422356" },
+        { nome: "REDE D'OR RIBEIRÃO PIRES", codigo: "CLI-1011", endereco: "R. Dr. Nicolau Assef, 52 - Centro Alto, Ribeirão Pires - SP, 09424-070", horario: "16:20 - 16:30", whatsapp: "5511999999999" },
+        { nome: "SINAL VERDE", codigo: "CLI-1012", endereco: "R. dos Autonomistas, 388 - Centro, Ribeirão Pires - SP, 09402-520", horario: "16:45 - 16:55", whatsapp: "5511941546640" },
+        { nome: "ALVES MEDICINA", codigo: "CLI-1013", endereco: "R. dos Bandeirantes, 225 - Vila Bocaina, Mauá - SP, 09310-360", horario: "17:10 - 17:20", whatsapp: "5511985207908" },
+        { nome: "HOSPITAL INT AMÉRICA", codigo: "CLI-1014", endereco: "R. Martim Afonso, 134 - Vila Guarani, Mauá - SP, 09310-320", horario: "17:30 - 17:40", whatsapp: "5511999999999" },
+        { nome: "VITAL LAB", codigo: "CLI-1015", endereco: "R. Santos Dumont, 182 - Vila Bocaina, Mauá - SP, 09310-130", horario: "18:00 - 19:00", whatsapp: "5511940186814" },
+        { nome: "DIAVERUM MAUÁ", codigo: "CLI-1016", endereco: "Av. Dom José Gaspar, 301 - Matriz, Mauá - SP, 09370-670", horario: "19:15 - 19:25", whatsapp: "5511970137017" },
+        // clientes adicionais da segunda lista (com horários e telefones fictícios, pode ajustar)
+        { nome: "BEEP", codigo: "CLI-2001", endereco: "Av. Senador Vergueiro, 3597 - Rudge Ramos, São Bernardo do Campo - SP, 09601-000", horario: "19:35 - 19:45", whatsapp: "5511999999999" },
+        { nome: "STILO MAUÁ", codigo: "CLI-2004", endereco: "Rua General Osório, 136 - Vila Bocaina, Mauá - SP, 09310-050", horario: "20:30 - 20:40", whatsapp: "5511977886569" },
+        { nome: "STILO RIB.PIRES", codigo: "CLI-2005", endereco: "Rua Olímpia Cata Preta, 185 - Centro Alto, Ribeirão Pires - SP, 09424-100", horario: "20:50 - 21:00", whatsapp: "5511988119916" }
+    ];
+
+    // Função para gerar link do Waze com endereço codificado
+    function getWazeLink(endereco) {
+        const encodedAddress = encodeURIComponent(endereco);
+        return `https://waze.com/ul?q=${encodedAddress}&navigate=yes`;
+    }
+
+    function getWhatsAppLink(phone) {
+        let numero = phone.replace(/\D/g, '');
+        if (!numero.startsWith('55')) numero = '55' + numero;
+        return `https://wa.me/${numero}`;
+    }
+
+    async function copyToClipboard(text, successMsg) {
+        try {
+            await navigator.clipboard.writeText(text);
+            showToast(successMsg || 'Copiado!');
+        } catch {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast(successMsg || 'Copiado!');
+        }
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toastMsg');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    // RENDERIZAÇÃO DOS CARDS
+    function renderCards(filterText = "") {
+        const container = document.getElementById('cardsContainer');
+        if (!container) return;
+        const lowerFilter = filterText.toLowerCase();
+        const filtered = clientesData.filter(c => 
+            c.nome.toLowerCase().includes(lowerFilter) || 
+            c.codigo.toLowerCase().includes(lowerFilter)
+        );
+        if (filtered.length === 0) {
+            container.innerHTML = '<div style="text-align:center; padding:3rem; color:#aaa;">Nenhum cliente encontrado</div>';
+            return;
+        }
+        container.innerHTML = filtered.map(cliente => `
+            <div class="card">
+                <div class="empresa">${cliente.nome}</div>
+                <div class="codigo-cliente">
+                    <span class="codigo-label">Código do cliente:</span>
+                    <span class="codigo-valor">${cliente.codigo}</span>
+                    <button class="btn-copy-code" data-code="${cliente.codigo}">Copiar código</button>
+                </div>
+                <div class="endereco">
+                    <div class="endereco-header">
+                        <strong>Endereço</strong>
+                        <button class="btn-copy-address" data-address="${cliente.endereco.replace(/"/g, '&quot;')}">Copiar endereço</button>
+                    </div>
+                    <div class="address-value">${cliente.endereco}</div>
+                    <div class="endereco-actions">
+                        <a href="${getWazeLink(cliente.endereco)}" target="_blank" rel="noopener noreferrer" class="btn-waze">Abrir no Waze</a>
+                    </div>
+                </div>
+                <div class="horario">Atendimento: ${cliente.horario}</div>
+                <div class="acoes">
+                    <a href="${getWhatsAppLink(cliente.whatsapp)}" class="btn-whatsapp" target="_blank">WhatsApp Cliente</a>
+                </div>
+            </div>
+        `).join('');
+        attachCardCopyEvents();
+    }
+
+    function attachCardCopyEvents() {
+        document.querySelectorAll('.btn-copy-code').forEach(btn => {
+            btn.removeEventListener('click', copyCodeHandler);
+            btn.addEventListener('click', copyCodeHandler);
+        });
+        document.querySelectorAll('.btn-copy-address').forEach(btn => {
+            btn.removeEventListener('click', copyAddressHandler);
+            btn.addEventListener('click', copyAddressHandler);
+        });
+    }
+
+    function copyCodeHandler(e) {
+        const code = this.getAttribute('data-code');
+        copyToClipboard(code, `Código ${code} copiado!`);
+    }
+    function copyAddressHandler(e) {
+        const addr = this.getAttribute('data-address');
+        copyToClipboard(addr, 'Endereço copiado!');
+    }
+
+    // MODAL CÓDIGO CLIENTE
+    let currentClientesFiltered = [...clientesData];
+    let currentSelectedCode = "";
+
+    function updateModalSelect(filter = "") {
+        const select = document.getElementById('modalClienteSelect');
+        const searchTerm = filter.toLowerCase();
+        currentClientesFiltered = clientesData.filter(c => 
+            c.nome.toLowerCase().includes(searchTerm) || c.codigo.toLowerCase().includes(searchTerm)
+        );
+        select.innerHTML = "";
+        if (currentClientesFiltered.length === 0) {
+            select.innerHTML = '<option disabled>Nenhum cliente encontrado</option>';
+            document.getElementById('selectedCodeDisplay').innerText = "-- sem resultados --";
+            currentSelectedCode = "";
+            return;
+        }
+        currentClientesFiltered.forEach(cliente => {
+            const option = document.createElement('option');
+            option.value = cliente.codigo;
+            option.textContent = `${cliente.nome} (${cliente.codigo})`;
+            option.setAttribute('data-nome', cliente.nome);
+            select.appendChild(option);
+        });
+        if (select.options.length > 0) {
+            select.selectedIndex = 0;
+            currentSelectedCode = select.options[0].value;
+            document.getElementById('selectedCodeDisplay').innerText = currentSelectedCode;
+        } else {
+            currentSelectedCode = "";
+            document.getElementById('selectedCodeDisplay').innerText = "-- selecione --";
+        }
+    }
+
+    function setupClienteModal() {
+        const modal = document.getElementById('clienteModal');
+        const searchInput = document.getElementById('modalClienteSearch');
+        const select = document.getElementById('modalClienteSelect');
+        const copyBtn = document.getElementById('copyModalCodeBtn');
+        const displayDiv = document.getElementById('selectedCodeDisplay');
+
+        document.getElementById('openClienteModalBtn').onclick = () => {
+            updateModalSelect('');
+            if (searchInput) searchInput.value = '';
+            modal.style.display = 'flex';
+        };
+
+        searchInput.addEventListener('input', (e) => updateModalSelect(e.target.value));
+        select.addEventListener('change', () => {
+            if (select.selectedIndex >= 0 && select.options[select.selectedIndex]) {
+                currentSelectedCode = select.options[select.selectedIndex].value;
+                displayDiv.innerText = currentSelectedCode;
+            } else {
+                currentSelectedCode = "";
+                displayDiv.innerText = "-- selecione --";
+            }
+        });
+        copyBtn.addEventListener('click', () => {
+            if (currentSelectedCode) {
+                copyToClipboard(currentSelectedCode, `Código ${currentSelectedCode} copiado!`);
+            } else {
+                showToast('Selecione um cliente primeiro');
+            }
+        });
+    }
+
+    // MODAL INSUMOS
+    function setupInsumosModal() {
+        const modal = document.getElementById('insumosModal');
+        const openBtn = document.getElementById('openInsumosBtn');
+        openBtn.onclick = () => modal.style.display = 'flex';
+    }
+
+    function setupModalClosers() {
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.close-modal');
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modalId = btn.getAttribute('data-modal');
+                const modal = document.getElementById(modalId);
+                if (modal) modal.style.display = 'none';
+            });
+        });
+        window.addEventListener('click', (e) => {
+            modals.forEach(modal => {
+                if (e.target === modal) modal.style.display = 'none';
+            });
+        });
+    }
+
+    // Home button
+    document.getElementById('homeButton').addEventListener('click', () => {
+        document.getElementById('globalSearch').value = '';
+        renderCards('');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const globalSearch = document.getElementById('globalSearch');
+    globalSearch.addEventListener('input', (e) => renderCards(e.target.value));
+
+    function init() {
+        renderCards('');
+        setupInsumosModal();
+        setupClienteModal();
+        setupModalClosers();
+    }
+    init();
+</script>
+</body>
+</html>
