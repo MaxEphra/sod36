@@ -472,7 +472,7 @@
             <button class="close-modal" data-modal="insumosModal">&times;</button>
         </div>
         <ul class="insumos-list">
-            <li>SOD 36</li><li>SOD 38</li><li>SOD 40</li><li>SOD 41</li><li>SOD 42</li><li>SOD 29B</li><li>SOD 52</li>
+            <li>SOD 36</li><li>SOD 38</li><li>SOD 41</li><li>SOD 42</li><li>SOD 29B</li><li>SOD 52</li>
         </ul>
     </div>
 </div>
@@ -496,26 +496,26 @@
 <script>
     // ==================== BASE DE DADOS ATUALIZADA COM ENDEREÇOS CORRETOS ====================
     const clientesData = [
-        { nome: "DBS SÃO MATEUS", codigo: "CLI-1001", endereco: "Av. Cláudio Augusto Fernandes, 826 - São Mateus, São Paulo - SP, 03962-120", horario: "13:20 - 13:30", whatsapp: "5511916407147" },
-        { nome: "SEMEWORK", codigo: "CLI-1002", endereco: "RUA ANDRÉ DE ALMEIDA, 2098, SÃO MATEUS, SÃO PAULO-SP, 03950-000", horario: "13:35 - 13:45", whatsapp: "5511949027884" },
-        { nome: "SOLER", codigo: "CLI-1003", endereco: "Av. Satélite, 84 - Cidade Satelite Santa Barbara, São Paulo - SP, 08330-480", horario: "13:50 - 14:00", whatsapp: "5511942437177" },
-        { nome: "AMOR SAÚDE", codigo: "CLI-1004", endereco: "R. Diogo de Moraes Lara, 910 - Jardim Rodolfo Pirani, São Paulo - SP, 08310-200", horario: "14:05 - 14:15", whatsapp: "5511940115548" },
-        { nome: "ISA LAB MAUÁ", codigo: "CLI-1005", endereco: "R. Santa Cecília, 269 - Matriz, Mauá - SP, 09370-110", horario: "14:25 - 14:35", whatsapp: "5511949374041" },
-        { nome: "MB TOXICOLÓGICO", codigo: "CLI-1006", endereco: "av. brigadeiro faria lima 2381, Centro, São Bernardo do Campo - SP, 09720-010", horario: "14:45 - 14:55", whatsapp: "5511954673942" },
-        { nome: "ISA MARMARA", codigo: "CLI-1007", endereco: "R. Mármará, 239 - Jardim do Mar, São Bernardo do Campo - SP, 09750-720", horario: "15:00 - 15:10", whatsapp: "5511988119199" },
-        { nome: "REDE D'OR ASSUNÇÃO", codigo: "CLI-1008", endereco: "Av. João Firmino, 250 - Assunção, São Bernardo do Campo - SP, 09810-250", horario: "15:20 - 15:30", whatsapp: "5511999999999" },
-        { nome: "LUMIERE", codigo: "CLI-1009", endereco: "Av. Cap. Casa, 590 - Demarchi, São Bernardo do Campo - SP, 09811-251", horario: "15:40 - 15:50", whatsapp: "5511987902733" },
-        { nome: "EDNA", codigo: "CLI-1010", endereco: "R. Tranquila, 38 - Suissa, Ribeirão Pires - SP, 09421-190", horario: "16:00 - 16:10", whatsapp: "5511971422356" },
-        { nome: "REDE D'OR RIBEIRÃO PIRES", codigo: "CLI-1011", endereco: "R. Dr. Nicolau Assef, 52 - Centro Alto, Ribeirão Pires - SP, 09424-070", horario: "16:20 - 16:30", whatsapp: "5511999999999" },
-        { nome: "SINAL VERDE", codigo: "CLI-1012", endereco: "R. dos Autonomistas, 388 - Centro, Ribeirão Pires - SP, 09402-520", horario: "16:45 - 16:55", whatsapp: "5511941546640" },
-        { nome: "ALVES MEDICINA", codigo: "CLI-1013", endereco: "R. dos Bandeirantes, 225 - Vila Bocaina, Mauá - SP, 09310-360", horario: "17:10 - 17:20", whatsapp: "5511985207908" },
-        { nome: "HOSPITAL INT AMÉRICA", codigo: "CLI-1014", endereco: "R. Martim Afonso, 134 - Vila Guarani, Mauá - SP, 09310-320", horario: "17:30 - 17:40", whatsapp: "5511999999999" },
-        { nome: "VITAL LAB", codigo: "CLI-1015", endereco: "R. Santos Dumont, 182 - Vila Bocaina, Mauá - SP, 09310-130", horario: "18:00 - 19:00", whatsapp: "5511940186814" },
-        { nome: "DIAVERUM MAUÁ", codigo: "CLI-1016", endereco: "Av. Dom José Gaspar, 301 - Matriz, Mauá - SP, 09370-670", horario: "19:15 - 19:25", whatsapp: "5511970137017" },
+        { nome: "DBS SÃO MATEUS", codigo: "1587889", endereco: "Av. Cláudio Augusto Fernandes, 826 - São Mateus, São Paulo - SP, 03962-120", horario: "13:20 - 13:30", whatsapp: "5511916407147" },
+        { nome: "SEMEWORK", codigo: "1599451", endereco: "RUA ANDRÉ DE ALMEIDA, 2098, SÃO MATEUS, SÃO PAULO-SP, 03950-000", horario: "13:30 - 13:40", whatsapp: "5511949027884" },
+        { nome: "SOLER", codigo: "962699", endereco: "Av. Satélite, 84 - Cidade Satelite Santa Barbara, São Paulo - SP, 08330-480", horario: "13:45 - 13:55", whatsapp: "5511942437177" },
+        { nome: "AMOR SAÚDE", codigo: "523285", endereco: "R. Diogo de Moraes Lara, 910 - Jardim Rodolfo Pirani, São Paulo - SP, 08310-200", horario: "14:05 - 14:15", whatsapp: "5511940115548" },
+        { nome: "ISA LAB MAUÁ", codigo: "1844671", endereco: "R. Santa Cecília, 269 - Matriz, Mauá - SP, 09370-110", horario: "14:25 - 14:35", whatsapp: "5511949374041" },
+        { nome: "MB TOXICOLÓGICO", codigo: "2058286", endereco: "av. brigadeiro faria lima 2381, Centro, São Bernardo do Campo - SP, 09720-010", horario: "15:15 - 15:25", whatsapp: "5511954673942" },
+        { nome: "ISA MARMARA", codigo: "1844571", endereco: "R. Mármará, 239 - Jardim do Mar, São Bernardo do Campo - SP, 09750-720", horario: "15:20 - 15:35", whatsapp: "5511988119199" },
+        { nome: "REDE D'OR ASSUNÇÃO", codigo: "1050075", endereco: "Av. João Firmino, 250 - Assunção, São Bernardo do Campo - SP, 09810-250", horario: "14:30 - 14:40", whatsapp: "5511999999999" },
+        { nome: "LUMIERE", codigo: "843531", endereco: "Av. Cap. Casa, 590 - Demarchi, São Bernardo do Campo - SP, 09811-251", horario: "15:40 - 15:55", whatsapp: "5511987902733" },
+        { nome: "EDNA", codigo: "LAMINAS", endereco: "R. Tranquila, 38 - Suissa, Ribeirão Pires - SP, 09421-190", horario: "16:20 - 16:13", whatsapp: "5511971422356" },
+        { nome: "REDE D'OR RIBEIRÃO PIRES", codigo: "78067", endereco: "R. Dr. Nicolau Assef, 52 - Centro Alto, Ribeirão Pires - SP, 09424-070", horario: "17:05 - 17:15", whatsapp: "5511999999999" },
+        { nome: "SINAL VERDE", codigo: "2536864", endereco: "R. dos Autonomistas, 388 - Centro, Ribeirão Pires - SP, 09402-520", horario: "16:50 - 17:00", whatsapp: "5511941546640" },
+        { nome: "ALVES MEDICINA", codigo: "768762", endereco: "R. dos Bandeirantes, 225 - Vila Bocaina, Mauá - SP, 09310-360", horario: "17:40 - 17:50", whatsapp: "5511985207908" },
+        { nome: "HOSPITAL INT AMÉRICA", codigo: "979503", endereco: "R. Martim Afonso, 134 - Vila Guarani, Mauá - SP, 09310-320", horario: "18:10 - 18:20", whatsapp: "5511999999999" },
+        { nome: "VITAL LAB", codigo: "1759420", endereco: "R. Santos Dumont, 182 - Vila Bocaina, Mauá - SP, 09310-130", horario: "18:00 - 18:10", whatsapp: "5511940186814" },
+        { nome: "DIAVERUM MAUÁ", codigo: "2360979", endereco: "Av. Dom José Gaspar, 301 - Matriz, Mauá - SP, 09370-670", horario: "18:00 - 18:10", whatsapp: "5511970137017" },
         // clientes adicionais da segunda lista (com horários e telefones fictícios, pode ajustar)
-        { nome: "BEEP", codigo: "CLI-2001", endereco: "Av. Senador Vergueiro, 3597 - Rudge Ramos, São Bernardo do Campo - SP, 09601-000", horario: "19:35 - 19:45", whatsapp: "5511999999999" },
-        { nome: "STILO MAUÁ", codigo: "CLI-2004", endereco: "Rua General Osório, 136 - Vila Bocaina, Mauá - SP, 09310-050", horario: "20:30 - 20:40", whatsapp: "5511977886569" },
-        { nome: "STILO RIB.PIRES", codigo: "CLI-2005", endereco: "Rua Olímpia Cata Preta, 185 - Centro Alto, Ribeirão Pires - SP, 09424-100", horario: "20:50 - 21:00", whatsapp: "5511988119916" }
+        { nome: "BEEP", codigo: "909960", endereco: "Av. Senador Vergueiro, 3597 - Rudge Ramos, São Bernardo do Campo - SP, 09601-000", horario: "12:30 - 12:40", whatsapp: "5511999999999" },
+        { nome: "STILO MAUÁ", codigo: "1966730", endereco: "Rua General Osório, 136 - Vila Bocaina, Mauá - SP, 09310-050", horario: "14:45 - 14:55", whatsapp: "5511977886569" },
+        { nome: "STILO RIB.PIRES", codigo: "1964650", endereco: "Rua Olímpia Cata Preta, 185 - Centro Alto, Ribeirão Pires - SP, 09424-100", horario: "16:25 - 16:35", whatsapp: "5511988119916" }
     ];
 
     // Função para gerar link do Waze com endereço codificado
